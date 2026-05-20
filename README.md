@@ -1,6 +1,6 @@
 # tdse-tp3_2026-1erC_1-04
 # FIUBA - Electrónica - Taller de Sistemas Embebidos - Trabajo Práctico N°: 3 - LCD Display - System Setup Menu
-### 2026-1 Cuatrimestre - Curso 1 - Grupo 4
+### 2026 - 1° Cuatrimestre - Curso 1 - Grupo 4
 ### Responsable de la entrega:
 | Padrón | Apellidos, Nombres | Fecha | Deadline |
 | :----- | :--------------------- | :------: | :-------: |
