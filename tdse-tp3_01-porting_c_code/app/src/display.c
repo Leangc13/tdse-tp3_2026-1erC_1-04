@@ -78,6 +78,7 @@
 #define DISPLAY_PIN_D6 13
 #define DISPLAY_PIN_D7 14
 
+
 #define DISPLAY_DEL_37US	37ul
 #define DISPLAY_DEL_01US	01ul
 
@@ -276,10 +277,10 @@ static void displayPinWrite( uint8_t pinName, int value )
                 case DISPLAY_PIN_D7:
                 	HAL_GPIO_WritePin((GPIO_TypeDef *)D7_GPIO_Port, (uint16_t)D7_Pin, (GPIO_PinState)value);
                 	break;
-                case DISPLAY_PIN_D8:
+                case DISPLAY_PIN_RS:
                 	HAL_GPIO_WritePin((GPIO_TypeDef *)D8_GPIO_Port, (uint16_t)D8_Pin, (GPIO_PinState)value);
                 	break;
-                case DISPLAY_PIN_D9:
+                case DISPLAY_PIN_EN:
                 	HAL_GPIO_WritePin((GPIO_TypeDef *)D9_GPIO_Port, (uint16_t)D9_Pin, (GPIO_PinState)value);
                 	break;
 
