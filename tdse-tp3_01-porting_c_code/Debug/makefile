@@ -61,8 +61,8 @@ all: main-build
 main-build: tdse-tp3_01-porting_c_code.elf secondary-outputs
 
 # Tool invocations
-tdse-tp3_01-porting_c_code.elf tdse-tp3_01-porting_c_code.map: $(OBJS) $(USER_OBJS) C:\JMCruz\ST\STM32CubeIDE_1.19.0\TdSE_workspace\tdse-tp3_01-porting_c_code\STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "tdse-tp3_01-porting_c_code.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\JMCruz\ST\STM32CubeIDE_1.19.0\TdSE_workspace\tdse-tp3_01-porting_c_code\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="tdse-tp3_01-porting_c_code.map" -Wl,--gc-sections -static -specs=rdimon.specs --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+tdse-tp3_01-porting_c_code.elf tdse-tp3_01-porting_c_code.map: $(OBJS) $(USER_OBJS) C:\Users\lean1\STM32CubeIDE\workspace_1.19.0\tdse-tp3_2026-1erC_1-04\tdse-tp3_01-porting_c_code\STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "tdse-tp3_01-porting_c_code.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\lean1\STM32CubeIDE\workspace_1.19.0\tdse-tp3_2026-1erC_1-04\tdse-tp3_01-porting_c_code\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="tdse-tp3_01-porting_c_code.map" -Wl,--gc-sections -static -specs=rdimon.specs --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
