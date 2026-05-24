@@ -4,6 +4,6 @@
 ### Responsable de la entrega:
 | Padrón | Apellidos, Nombres | Fecha | Deadline |
 | :----- | :--------------------- | :------: | :-------: |
-| 1034756 | Garcia Caneva Leandro | | Semana 07 |
-| 104323 | Vargas Joaquin | | Semana 07 |
-| 104153 | Molina Aban Florencia | | Semana 07 |
+| 1034756 | Garcia Caneva Leandro | | Semana 08 |
+| 104323 | Vargas Joaquin | | Semana 08 |
+| 104153 | Molina Aban Florencia | | Semana 08 |
