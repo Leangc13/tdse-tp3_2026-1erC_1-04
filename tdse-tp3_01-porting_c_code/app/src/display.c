@@ -282,6 +282,7 @@ static void displayPinWrite( uint8_t pinName, int value )
                 case DISPLAY_PIN_D9:
                 	HAL_GPIO_WritePin((GPIO_TypeDef *)D9_GPIO_Port, (uint16_t)D9_Pin, (GPIO_PinState)value);
                 	break;
+
 //                case DISPLAY_PIN_D5: displayD5 = value;   break;
 //                case DISPLAY_PIN_D6: displayD6 = value;   break;
 //                case DISPLAY_PIN_D7: displayD7 = value;   break;
