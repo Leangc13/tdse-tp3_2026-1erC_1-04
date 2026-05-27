@@ -1,0 +1,72 @@
+!SESSION 2026-05-27 16:50:05.680 -----------------------------------------------
+eclipse.buildId=Version 1.19.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_AR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2026-05-27 16:51:09.630
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2026-05-27 16:51:09.634
+!MESSAGE Log4j2 initialized with config file C:\Users\wil-9\OneDrive\Documentos\embebidos\tdse-tp3_2026-1erC_1-04\tdse-tp3_01-porting_c_code\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2026-05-27 16:51:14.448
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2026-05-27 16:54:52.463 -----------------------------------------------
+eclipse.buildId=Version 1.19.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_AR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2026-05-27 16:55:35.098
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2026-05-27 16:55:35.099
+!MESSAGE Log4j2 initialized with config file C:\Users\wil-9\OneDrive\Documentos\embebidos\tdse-tp3_2026-1erC_1-04\tdse-tp3_01-porting_c_code\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2026-05-27 16:55:40.726
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.jobs 2 2 2026-05-27 16:56:09.995
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ui.internal.Workbench$39 RUNNING
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.DescriptorProtos$DescriptorProto$ExtensionRange.<clinit>(DescriptorProtos.java:6000)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.DescriptorProtos$DescriptorProto$Builder.mergeFrom(DescriptorProtos.java:8042)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.DescriptorProtos$DescriptorProto$1.parsePartialFrom(DescriptorProtos.java:10184)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.DescriptorProtos$DescriptorProto$1.parsePartialFrom(DescriptorProtos.java:10176)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.CodedInputStream$ArrayDecoder.readMessage(CodedInputStream.java:889)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.DescriptorProtos$FileDescriptorProto$Builder.mergeFrom(DescriptorProtos.java:2653)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.DescriptorProtos$FileDescriptorProto$1.parsePartialFrom(DescriptorProtos.java:4820)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.DescriptorProtos$FileDescriptorProto$1.parsePartialFrom(DescriptorProtos.java:4812)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.AbstractParser.parsePartialFrom(AbstractParser.java:158)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.AbstractParser.parseFrom(AbstractParser.java:191)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.AbstractParser.parseFrom(AbstractParser.java:203)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.AbstractParser.parseFrom(AbstractParser.java:208)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.AbstractParser.parseFrom(AbstractParser.java:48)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.DescriptorProtos$FileDescriptorProto.parseFrom(DescriptorProtos.java:2109)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.Descriptors$FileDescriptor.internalBuildGeneratedFileFrom(Descriptors.java:417)
+	 at com.teamdev.jxbrowser.deps.com.google.protobuf.DescriptorProtos.<clinit>(DescriptorProtos.java:45439)
+	 at com.teamdev.jxbrowser.internal.rpc.OptionsProto.<clinit>(OptionsProto.java:121)
+	 at com.teamdev.jxbrowser.net.internal.rpc.SchemeProto.<clinit>(SchemeProto.java:43)
+	 at com.teamdev.jxbrowser.net.internal.rpc.Scheme.getDescriptor(Scheme.java:38)
+	 at com.teamdev.jxbrowser.net.internal.rpc.Scheme.hashCode(Scheme.java:142)
+	 at java.base/java.util.HashMap.hash(HashMap.java:338)
+	 at java.base/java.util.HashMap.put(HashMap.java:618)
+	 at com.teamdev.jxbrowser.engine.EngineOptions$Builder.addScheme(EngineOptions.java:954)
+	 at com.st.components.swing.JxBrowserEngine.initBrowser(JxBrowserEngine.java:160)
+	 at com.st.components.swing.JxBrowserEngine.<init>(JxBrowserEngine.java:61)
+	 at com.st.components.swing.JxBrowserEngine.getInstance(JxBrowserEngine.java:125)
+	 at com.st.microxplorer.plugins.userauth.WebApp.<init>(WebApp.java:165)
+	 at com.st.microxplorer.plugins.userauth.WebApp.getInstance(WebApp.java:779)
+	 at com.st.microxplorer.plugins.userauth.UserAuth.getBrowserView(UserAuth.java:489)
+	 at com.st.microxplorer.plugins.userauth.UserAuth.activatePlugin(UserAuth.java:191)
+	 at com.st.stm32cube.common.mx.userauth.UserAuthAdapter.<init>(UserAuthAdapter.java:29)
+	 at com.st.stm32cube.common.mx.userauth.UserAuthProvider.getUserAuthAdapter(UserAuthProvider.java:16)
+	 at com.st.stm32cube.common.ecosystemintegration.ui.core.MCUEcoSystemIntegrationUiHelper.getUserAuth(MCUEcoSystemIntegrationUiHelper.java:100)
+	 at com.st.stm32cube.ide.mcu.userauth.UserAuthStartup.earlyStartup(UserAuthStartup.java:32)
+	 at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:79)
+	 at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:55)
+	 at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	 at org.eclipse.ui.internal.Workbench$39.run(Workbench.java:2733)
+	 at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
