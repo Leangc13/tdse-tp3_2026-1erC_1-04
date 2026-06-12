@@ -86,12 +86,17 @@ void task_system_init(void *parameters)
 	p_task_system_dta->state		= ST_SYS_MAIN;
 	p_task_system_dta->event		= EV_SYS_IDLE;
 	p_task_system_dta->flag			= false;
-	p_task_system_dta->selected_motor	= 1;
-	p_task_system_dta->mx_power		= false;
-	p_task_system_dta->mx_speed		= 0;
-	p_task_system_dta->mx_spin		= 'R';
-	p_task_system_dta->aux_speed		= 0;
+	p_task_system_dta->selected_motor = 1;
 
+	p_task_system_dta->motor[0].power = false;
+	p_task_system_dta->motor[0].speed = 0;
+	p_task_system_dta->motor[0].spin  = 'R';
+
+	p_task_system_dta->motor[1].power = false;
+	p_task_system_dta->motor[1].speed = 0;
+	p_task_system_dta->motor[1].spin  = 'R';
+
+	p_task_system_dta->aux_speed = 0;
 	/* Display initial screen */
 	put_event_task_display(0, 0, "system_setup_menu");
 	put_event_task_display(0, 1, "   <Main>       ");
@@ -278,7 +283,11 @@ void task_system_statechart(void)
 			}
 			else if (EV_SYS_ENTER == p_task_system_dta->event)
 			{
-				p_task_system_dta->aux_speed = p_task_system_dta->mx_speed;
+				uint32_t idx =
+				    p_task_system_dta->selected_motor - 1;
+
+				p_task_system_dta->aux_speed =
+				    p_task_system_dta->motor[idx].speed;
 				p_task_system_dta->state = ST_SYS_EDIT_SPEED;
 
 				put_event_task_display(0, 0, "  edit_speed    ");
@@ -316,7 +325,16 @@ void task_system_statechart(void)
 			}
 			else if (EV_SYS_ENTER == p_task_system_dta->event)
 			{
-				p_task_system_dta->mx_spin = 'R';
+				uint32_t idx = p_task_system_dta->selected_motor - 1;
+
+				LOGGER_INFO(
+				    "Motor %lu -> P=%d S=%lu D=%c",
+				    p_task_system_dta->selected_motor,
+				    p_task_system_dta->motor[idx].power,
+				    p_task_system_dta->motor[idx].speed,
+				    p_task_system_dta->motor[idx].spin
+				);
+
 				p_task_system_dta->state = ST_SYS_EDIT_SPIN_RIGHT;
 
 				put_event_task_display(0, 0, "  edit_spin     ");
@@ -354,7 +372,19 @@ void task_system_statechart(void)
 			}
 			else if (EV_SYS_ENTER == p_task_system_dta->event)
 			{
-				p_task_system_dta->mx_power = true;
+				uint32_t idx =
+				    p_task_system_dta->selected_motor - 1;
+
+				p_task_system_dta->motor[idx].power = true;
+
+				LOGGER_INFO(
+				    "Motor %lu -> P=%d S=%lu D=%c",
+				    p_task_system_dta->selected_motor,
+				    p_task_system_dta->motor[idx].power,
+				    p_task_system_dta->motor[idx].speed,
+				    p_task_system_dta->motor[idx].spin
+				);
+
 				p_task_system_dta->state = ST_SYS_PARAM_POWER;
 
 				if (1 == p_task_system_dta->selected_motor)
@@ -387,7 +417,20 @@ void task_system_statechart(void)
 			}
 			else if (EV_SYS_ENTER == p_task_system_dta->event)
 			{
-				p_task_system_dta->mx_power = false;
+				uint32_t idx =
+				    p_task_system_dta->selected_motor - 1;
+
+				p_task_system_dta->motor[idx].power = false;
+
+				LOGGER_INFO(
+								    "Motor %lu -> P=%d S=%lu D=%c",
+								    p_task_system_dta->selected_motor,
+								    p_task_system_dta->motor[idx].power,
+								    p_task_system_dta->motor[idx].speed,
+								    p_task_system_dta->motor[idx].spin
+								);
+
+
 				p_task_system_dta->state = ST_SYS_PARAM_POWER;
 
 				if (1 == p_task_system_dta->selected_motor)
@@ -424,7 +467,20 @@ void task_system_statechart(void)
 			}
 			else if (EV_SYS_ENTER == p_task_system_dta->event)
 			{
-				p_task_system_dta->mx_speed = p_task_system_dta->aux_speed;
+				uint32_t idx =
+				    p_task_system_dta->selected_motor - 1;
+
+				p_task_system_dta->motor[idx].speed =
+				    p_task_system_dta->aux_speed;
+
+				LOGGER_INFO(
+				    "Motor %lu -> P=%d S=%lu D=%c",
+				    p_task_system_dta->selected_motor,
+				    p_task_system_dta->motor[idx].power,
+				    p_task_system_dta->motor[idx].speed,
+				    p_task_system_dta->motor[idx].spin
+				);
+
 				p_task_system_dta->state = ST_SYS_PARAM_SPEED;
 
 				if (1 == p_task_system_dta->selected_motor)
@@ -460,7 +516,19 @@ void task_system_statechart(void)
 			}
 			else if (EV_SYS_ENTER == p_task_system_dta->event)
 			{
-				p_task_system_dta->mx_spin = 'R';
+				uint32_t idx =
+				    p_task_system_dta->selected_motor - 1;
+
+				p_task_system_dta->motor[idx].spin = 'R';
+
+				LOGGER_INFO(
+								    "Motor %lu -> P=%d S=%lu D=%c",
+								    p_task_system_dta->selected_motor,
+								    p_task_system_dta->motor[idx].power,
+								    p_task_system_dta->motor[idx].speed,
+								    p_task_system_dta->motor[idx].spin
+								);
+
 				p_task_system_dta->state = ST_SYS_PARAM_SPIN;
 
 				if (1 == p_task_system_dta->selected_motor)
@@ -493,7 +561,20 @@ void task_system_statechart(void)
 			}
 			else if (EV_SYS_ENTER == p_task_system_dta->event)
 			{
-				p_task_system_dta->mx_spin = 'L';
+				uint32_t idx =
+				    p_task_system_dta->selected_motor - 1;
+
+				p_task_system_dta->motor[idx].spin = 'L';
+
+				LOGGER_INFO(
+								    "Motor %lu -> P=%d S=%lu D=%c",
+								    p_task_system_dta->selected_motor,
+								    p_task_system_dta->motor[idx].power,
+								    p_task_system_dta->motor[idx].speed,
+								    p_task_system_dta->motor[idx].spin
+								);
+
+
 				p_task_system_dta->state = ST_SYS_PARAM_SPIN;
 
 				if (1 == p_task_system_dta->selected_motor)

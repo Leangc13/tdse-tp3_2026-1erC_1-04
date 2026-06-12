@@ -1,4 +1,4 @@
 ../app/src/task_system.c:71:6:task_system_init	40	static,ignoring_inline_asm
-../app/src/task_system.c:100:6:task_system_update	16	static
-../app/src/task_system.c:110:13:display_speed	16	static
-../app/src/task_system.c:124:6:task_system_statechart	16	static
+../app/src/task_system.c:105:6:task_system_update	16	static
+../app/src/task_system.c:115:13:display_speed	16	static
+../app/src/task_system.c:129:6:task_system_statechart	72	static,ignoring_inline_asm

@@ -74,16 +74,21 @@ typedef enum task_system_st {
 
 typedef struct
 {
+    bool power;
+    uint32_t speed;
+    char spin;
+} motor_cfg_t;
+
+typedef struct
+{
 	uint32_t			tick;
 	task_system_st_t	state;
 	task_system_ev_t	event;
 	bool				flag;
 	/* Setup variables */
-	uint32_t			selected_motor;
-	bool				mx_power;
-	uint32_t			mx_speed;
-	char				mx_spin;
-	uint32_t			aux_speed;		/* aux for edit_speed */
+	uint32_t            selected_motor;
+	motor_cfg_t         motor[2];
+	uint32_t            aux_speed;		/* aux for edit_speed */
 } task_system_dta_t;
 
 /********************** external data declaration ****************************/
