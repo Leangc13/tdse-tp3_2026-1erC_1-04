@@ -57,13 +57,11 @@
 
 /********************** internal data declaration ****************************/
 const task_sensor_cfg_t task_sensor_cfg_list[] = {
-	{ID_BTN_A,    BTN_A_PORT,    BTN_A_PIN,   BTN_A_PRESSED,   DEL_BTN_MAX,
-	 EV_SYS_IDLE, EV_SYS_BTN_A},
-	{ID_BTN_ENT,  BTN_ENT_PORT,  BTN_ENT_PIN, BTN_ENT_PRESSED, DEL_BTN_MAX,
+	{ID_BTN_ENT, BTN_ENT_PORT, BTN_ENT_PIN, BTN_ENT_PRESSED, DEL_BTN_MAX,
 	 EV_SYS_IDLE, EV_SYS_ENTER},
-	{ID_BTN_NEX,  BTN_NEX_PORT,  BTN_NEX_PIN, BTN_NEX_PRESSED, DEL_BTN_MAX,
+	{ID_BTN_NEX, BTN_NEX_PORT, BTN_NEX_PIN, BTN_NEX_PRESSED, DEL_BTN_MAX,
 	 EV_SYS_IDLE, EV_SYS_NEXT},
-	{ID_BTN_ESC,  BTN_ESC_PORT,  BTN_ESC_PIN, BTN_ESC_PRESSED, DEL_BTN_MAX,
+	{ID_BTN_ESC, BTN_ESC_PORT, BTN_ESC_PIN, BTN_ESC_PRESSED, DEL_BTN_MAX,
 	 EV_SYS_IDLE, EV_SYS_ESCAPE}
 };
 
@@ -130,87 +128,84 @@ void task_sensor_statechart(uint32_t index)
 	const task_sensor_cfg_t *p_task_sensor_cfg;
 	task_sensor_dta_t *p_task_sensor_dta;
 
-	for (index = 0; SENSOR_DTA_QTY > index; index++)
+	/* Update Task Sensor Configuration & Data Pointer */
+	p_task_sensor_cfg = &task_sensor_cfg_list[index];
+	p_task_sensor_dta = &task_sensor_dta_list[index];
+
+	if (p_task_sensor_cfg->pressed == HAL_GPIO_ReadPin(p_task_sensor_cfg->gpio_port, p_task_sensor_cfg->pin))
 	{
-		/* Update Task Sensor Configuration & Data Pointer */
-		p_task_sensor_cfg = &task_sensor_cfg_list[index];
-		p_task_sensor_dta = &task_sensor_dta_list[index];
+		p_task_sensor_dta->event = EV_BTN_DOWN;
+	}
+	else
+	{
+		p_task_sensor_dta->event = EV_BTN_UP;
+	}
 
-		if (p_task_sensor_cfg->pressed == HAL_GPIO_ReadPin(p_task_sensor_cfg->gpio_port, p_task_sensor_cfg->pin))
-		{
-			p_task_sensor_dta->event =	EV_BTN_DOWN;
-		}
-		else
-		{
-			p_task_sensor_dta->event =	EV_BTN_UP;
-		}
+	switch (p_task_sensor_dta->state)
+	{
+		case ST_BTN_UP:
 
-		switch (p_task_sensor_dta->state)
-		{
-			case ST_BTN_UP:
-
-				if (EV_BTN_DOWN == p_task_sensor_dta->event)
-				{
-					p_task_sensor_dta->tick = p_task_sensor_cfg->tick_max;
-					p_task_sensor_dta->state = ST_BTN_FALLING;
-				}
-
-				break;
-
-			case ST_BTN_FALLING:
-
-				p_task_sensor_dta->tick--;
-				if (DEL_BTN_MIN == p_task_sensor_dta->tick)
-				{
-					if (EV_BTN_DOWN == p_task_sensor_dta->event)
-					{
-						put_event_task_system(p_task_sensor_cfg->signal_down);
-						p_task_sensor_dta->state = ST_BTN_DOWN;
-					}
-					else
-					{
-						p_task_sensor_dta->state = ST_BTN_UP;
-					}
-				}
-
-				break;
-
-			case ST_BTN_DOWN:
-
-				if (EV_BTN_UP == p_task_sensor_dta->event)
-				{
-					p_task_sensor_dta->state = ST_BTN_RISING;
-					p_task_sensor_dta->tick = p_task_sensor_cfg->tick_max;
-				}
-
-				break;
-
-			case ST_BTN_RISING:
-
-				p_task_sensor_dta->tick--;
-				if (DEL_BTN_MIN == p_task_sensor_dta->tick)
-				{
-					if (EV_BTN_UP == p_task_sensor_dta->event)
-					{
-						put_event_task_system(p_task_sensor_cfg->signal_up);
-						p_task_sensor_dta->state = ST_BTN_UP;
-					}
-					else
-					{
-						p_task_sensor_dta->state = ST_BTN_DOWN;
-					}
-				}
-
-				break;
-
-			default:
-
-				p_task_sensor_dta->tick  = DEL_BTN_MIN;
-				p_task_sensor_dta->state = ST_BTN_UP;
-				p_task_sensor_dta->event = EV_BTN_UP;
+			if (EV_BTN_DOWN == p_task_sensor_dta->event)
+			{
+				p_task_sensor_dta->tick = p_task_sensor_cfg->tick_max;
+				p_task_sensor_dta->state = ST_BTN_FALLING;
+			}
 
 			break;
-		}
+
+		case ST_BTN_FALLING:
+
+			p_task_sensor_dta->tick--;
+			if (DEL_BTN_MIN == p_task_sensor_dta->tick)
+			{
+				if (EV_BTN_DOWN == p_task_sensor_dta->event)
+				{
+					put_event_task_system(p_task_sensor_cfg->signal_down);
+					p_task_sensor_dta->state = ST_BTN_DOWN;
+				}
+				else
+				{
+					p_task_sensor_dta->state = ST_BTN_UP;
+				}
+			}
+
+			break;
+
+		case ST_BTN_DOWN:
+
+			if (EV_BTN_UP == p_task_sensor_dta->event)
+			{
+				p_task_sensor_dta->state = ST_BTN_RISING;
+				p_task_sensor_dta->tick = p_task_sensor_cfg->tick_max;
+			}
+
+			break;
+
+		case ST_BTN_RISING:
+
+			p_task_sensor_dta->tick--;
+			if (DEL_BTN_MIN == p_task_sensor_dta->tick)
+			{
+				if (EV_BTN_UP == p_task_sensor_dta->event)
+				{
+					put_event_task_system(p_task_sensor_cfg->signal_up);
+					p_task_sensor_dta->state = ST_BTN_UP;
+				}
+				else
+				{
+					p_task_sensor_dta->state = ST_BTN_DOWN;
+				}
+			}
+
+			break;
+
+		default:
+
+			p_task_sensor_dta->tick  = DEL_BTN_MIN;
+			p_task_sensor_dta->state = ST_BTN_UP;
+			p_task_sensor_dta->event = EV_BTN_UP;
+
+			break;
 	}
 }
 

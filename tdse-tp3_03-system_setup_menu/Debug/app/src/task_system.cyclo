@@ -1,0 +1,4 @@
+../app/src/task_system.c:71:6:task_system_init	1
+../app/src/task_system.c:100:6:task_system_update	1
+../app/src/task_system.c:110:13:display_speed	1
+../app/src/task_system.c:124:6:task_system_statechart	62

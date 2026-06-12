@@ -52,9 +52,25 @@ typedef enum task_system_ev {EV_SYS_IDLE,
 							 EV_SYS_NEXT,
 							 EV_SYS_ESCAPE} task_system_ev_t;
 
-/* State of Task System */
-typedef enum task_system_st {ST_SYS_IDLE,
-							 ST_SYS_ACTIVE} task_system_st_t;
+/* States of Task System */
+typedef enum task_system_st {
+	/* Menu_1 */
+	ST_SYS_MAIN,
+	ST_SYS_SELECT_MOTOR_1,
+	ST_SYS_SELECT_MOTOR_2,
+	/* Menu_2 */
+	ST_SYS_PARAM_POWER,
+	ST_SYS_PARAM_SPEED,
+	ST_SYS_PARAM_SPIN,
+	/* Menu_3 – edit_power */
+	ST_SYS_EDIT_POWER_ON,
+	ST_SYS_EDIT_POWER_OFF,
+	/* Menu_3 – edit_speed */
+	ST_SYS_EDIT_SPEED,
+	/* Menu_3 – edit_spin */
+	ST_SYS_EDIT_SPIN_RIGHT,
+	ST_SYS_EDIT_SPIN_LEFT
+} task_system_st_t;
 
 typedef struct
 {
@@ -62,6 +78,12 @@ typedef struct
 	task_system_st_t	state;
 	task_system_ev_t	event;
 	bool				flag;
+	/* Setup variables */
+	uint32_t			selected_motor;
+	bool				mx_power;
+	uint32_t			mx_speed;
+	char				mx_spin;
+	uint32_t			aux_speed;		/* aux for edit_speed */
 } task_system_dta_t;
 
 /********************** external data declaration ****************************/
